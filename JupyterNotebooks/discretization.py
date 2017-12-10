@@ -37,5 +37,5 @@ if __name__ == '__main__':
     pass_df = construct_dataframe()
     pass_df = discretize(pass_df, "HullArea", 2)
     pass_df = discretize(pass_df, "PassDist", 2)
-    pass_df = discretize(pass_df, "ShotClock", 4)
+    pass_df = discretize(pass_df, "ShotClock", 2)
     pass_df.to_csv('CleanedData_AllPasses_discretized.csv', index=False)

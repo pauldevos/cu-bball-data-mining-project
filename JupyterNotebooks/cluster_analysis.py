@@ -8,22 +8,30 @@ import matplotlib.cm as cm
 import numpy as np
 import pandas as pd
 import os
+import math
 
 print(__doc__)
 
-# Generating the sample data from make_blobs
-# This particular setting has one distinct cluster and 3 clusters placed close
-# together.
+
+directory = "../clean_data/"
 
 pass_df = pd.DataFrame()
-files = os.listdir()
-files.remove("CleanedData_games_1-99.7z")
+files = os.listdir(directory)
 for f in files:
     if "CleanedData" in f:
-        pass_df = pass_df.append(pd.read_csv(f))
+        pass_df = pass_df.append(pd.read_csv(directory + f))
 
-X = pass_df['HullArea'].values.reshape(-1, 1)
+attr = 'ShotClock'
+print(attr)
+X = np.asarray(pass_df[attr])
+print(len(X))
+X = np.nan_to_num(X)
+print(np.min(X))
+print(np.max(X))
+
+X = pd.Series(X).values.reshape(-1, 1)
 range_n_clusters = list(range(2, 30))
+
 
 for n_clusters in range_n_clusters:
     # Create a subplot with 1 row and 2 columns
@@ -38,8 +46,12 @@ for n_clusters in range_n_clusters:
     # plots of individual clusters, to demarcate them clearly.
     ax1.set_ylim([0, len(X) + (n_clusters + 1) * 10])
 
-    clusterer = KMeans(n_clusters=n_clusters)
+    clusterer = KMeans(n_clusters=n_clusters).fit(X)
+    clustering = clusterer.fit(X)
     cluster_labels = clusterer.fit_predict(X)
+    print(list(clustering.labels_).count(0))
+    print(list(clustering.labels_).count(1))
+    print(list(clustering.cluster_centers_))
 
     # The silhouette_score gives the average value for all the samples.
     # This gives a perspective into the density and separation of the formed
@@ -100,11 +112,11 @@ for n_clusters in range_n_clusters:
                     s=50, edgecolor='k')
 
     ax2.set_title("The visualization of the clustered data.")
-    ax2.set_xlabel("Feature space for the 1st feature")
-    ax2.set_ylabel("Feature space for the 2nd feature")
+    ax2.set_xlabel("Pass Index")
+    ax2.set_ylabel(attr)
 
-    plt.suptitle(("Silhouette analysis for KMeans clustering on sample data "
-                  "with n_clusters = %d" % n_clusters),
+    plt.suptitle(("Silhouette analysis for KMeans clustering on %s "
+                  "with n_clusters = %d" % (attr, n_clusters)),
                  fontsize=14, fontweight='bold')
 
     plt.show()

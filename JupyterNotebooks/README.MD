@@ -1,3 +1,6 @@
+Jupyter Notebooks
+-----------------
+
 * Cleaning Data Pipeline - Failed AlleysOops.ipynb	(Moment of catch and pass script specific for failed alley oops data)
 * Cleaning Data Pipeline.ipynb	(Main data extraction of catch and pass moments, and correlating SportVU with Play-by-Play dataset)
 * Extracting ASTS, Bad Pass, Alley Oops.ipynb	(Script Filtering Assists, Turnovers from raw data)
@@ -6,6 +9,9 @@
 * Parsing Passer-Receiver.ipynb	(Notebook that extracts assists, bad pass, alley oop events from)
 * Previewing SportsVU Datastructure.ipynb	(Jupyter notebook showing the schema for SportsVU and Play-by-Play Data)
 * Predict Successes.ipynb (Predict Successful Passes Notebook)
+
+Python Scripts
+--------------
 
 * data_analysis.py	(Data analysis script of cleaned data)
 * discretization.py	(Attribute Discretization Calculation script)

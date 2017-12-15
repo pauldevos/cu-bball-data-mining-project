@@ -17,4 +17,4 @@ Python Scripts
 * discretization.py	(Script to discretize certain attributes)
 * open_shooter.py	(Script determining if shooter is open) 
 * cluster_analysis.py	(Clustering analysis script for attributes)
-* pass_calculations.py (Regular Pass (non-assist) Calcuations)
+* pass_calculations.py (Regular Pass (non-assist) calcuations)
